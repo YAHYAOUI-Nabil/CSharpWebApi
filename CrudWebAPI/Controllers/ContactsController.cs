@@ -16,12 +16,14 @@ namespace CrudWebAPI.Controllers
             this.dbContext = dbContext;
         }
 
+        // get all contacts
         [HttpGet]
         public async Task<IActionResult> GetContacts()
         {
             return Ok(await dbContext.Contacts.ToListAsync());
         }
 
+        // get single contact 
         [HttpGet]
         [Route("{id:guid}")]
         public async Task<IActionResult> GetContact([FromRoute] Guid id)
@@ -36,6 +38,7 @@ namespace CrudWebAPI.Controllers
             return NotFound();
         }
 
+        // add contact
         [HttpPost]
         public async Task<IActionResult> AddContact(AddContactRequest addContactRequest)
         {
@@ -54,6 +57,7 @@ namespace CrudWebAPI.Controllers
             return Ok(contact);
         }
 
+        // edit contact
         [HttpPut]
         [Route("{id:guid}")]
         public async Task<IActionResult> UpdateContact([FromRoute] Guid id, UpdateContactRequest updateContactRequest)
@@ -75,6 +79,7 @@ namespace CrudWebAPI.Controllers
             return NotFound();
         }
 
+        //delete contact
         [HttpDelete]
         [Route("{id:guid}")]
         public async Task<IActionResult> DeleteContact([FromRoute] Guid id)
