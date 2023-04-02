@@ -23,7 +23,7 @@ namespace CrudWebAPI.Controllers
             return Ok(await dbContext.Contacts.ToListAsync());
         }
 
-        // get single contact 
+        // get a single contact 
         [HttpGet]
         [Route("{id:guid}")]
         public async Task<IActionResult> GetContact([FromRoute] Guid id)
